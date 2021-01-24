@@ -1,7 +1,7 @@
 from __future__ import print_function
 from builtins import range
 from airflow.operators import PythonOperator
-from airflow.models import DAG
+from airflow.models import DAG, Variables
 from datetime import datetime, timedelta
 
 import time
@@ -28,6 +28,8 @@ def my_sleeping_function(random_base):
 def print_context(ds, **kwargs):
     pprint(kwargs)
     print(ds)
+    staging_password = Variables.get("PG_STAGING_PASSWORD")
+    print(staging_password)
     return 'Whatever you return gets printed in the logs'
 
 run_this = PythonOperator(
