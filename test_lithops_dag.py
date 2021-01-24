@@ -18,7 +18,7 @@ args = {
 }
 
 dag = DAG(
-    dag_id='word_processing_dag', default_args=args,
+    dag_id='test_lithops_dag', default_args=args,
     schedule_interval=None)
 
 
