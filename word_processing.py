@@ -36,7 +36,7 @@ def my_reduce_function(results):
     return final_result
 
 def lithops_func(*op_args):
-    config = Variable.get("lithops_config")
+    config = Variable.get("lithops_config", deserialize_json=True)
     fexec = lithops.FunctionExecutor(config=config)
     fexec.map_reduce(my_map_function, iterdata, my_reduce_function)
     result = fexec.get_result()
