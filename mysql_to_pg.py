@@ -33,34 +33,36 @@ def copy(args):
     
     pgconn.commit()
 
+    return {"message":"success"}
+
 def run(args):
     # config = Variable.get("lithops_config", deserialize_json=True)
     iam_api_key = Variable.get("IAM_APIKEY")
     cos_api_key = Variable.get("COS_APIKEY")
     config = {
-  "lithops": {
-    "storage_bucket": "lithops-bucket01",
-    "storage": "ibm_cos",
-    "mode": "serverless"
-  },
-  "serverless": {
-    "backend": "ibm_cf",
-    "runtime": "khairulhabib/lithops-runtime-datalake:1.0.1"
-  },
-  "ibm": {
-    "iam_api_key": iam_api_key
-  },
-  "ibm_cf": {
-    "endpoint": "https://us-south.functions.cloud.ibm.com",
-    "namespace": "Namespace-H5L",
-    "namespace_id": "7fd17f8c-4a89-4d08-9529-f9aa7737c52d"
-  },
-  "ibm_cos": {
-    "endpoint": "https://s3.jp-tok.cloud-object-storage.appdomain.cloud",
-    "private_endpoint": "https://s3.private.jp-tok.cloud-object-storage.appdomain.cloud",
-    "api_key": cos_api_key
-  }
-}
+        "lithops": {
+            "storage_bucket": "lithops-bucket01",
+            "storage": "ibm_cos",
+            "mode": "serverless"
+        },
+        "serverless": {
+            "backend": "ibm_cf",
+            "runtime": "khairulhabib/lithops-runtime-datalake:1.0.1"
+        },
+        "ibm": {
+            "iam_api_key": iam_api_key
+        },
+        "ibm_cf": {
+            "endpoint": "https://us-south.functions.cloud.ibm.com",
+            "namespace": "Namespace-H5L",
+            "namespace_id": "7fd17f8c-4a89-4d08-9529-f9aa7737c52d"
+        },
+        "ibm_cos": {
+            "endpoint": "https://s3.jp-tok.cloud-object-storage.appdomain.cloud",
+            "private_endpoint": "https://s3.private.jp-tok.cloud-object-storage.appdomain.cloud",
+            "api_key": cos_api_key
+        }
+    }
     fexec = lithops.FunctionExecutor(config=config)
     fexec.call_async(copy,100)
     fexec.get_result()
