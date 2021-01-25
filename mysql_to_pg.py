@@ -4,7 +4,7 @@ import psycopg2
 import pandas as pd
 from airflow.models import Variable
 
-def copy(args):
+def copy(slicenum):
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
     db.query("""SELECT * FROM user""")
     r = db.store_result()
@@ -35,7 +35,7 @@ def copy(args):
 
     return "Success"
 
-def run(myparam):
+def lithops_run(*myparam):
     # config = Variable.get("lithops_config", deserialize_json=True)
     iam_api_key = Variable.get("IAM_APIKEY")
     cos_api_key = Variable.get("COS_APIKEY")
@@ -64,6 +64,6 @@ def run(myparam):
         }
     }
     fexec = lithops.FunctionExecutor(config=config)
-    fexec.call_async(copy,100)
-    fexec.get_result()
-    fexec.clean()
+    fexec.call_async(copy,myparam)
+    result = fexec.get_result()
+    print(result)

@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import time
 from pprint import pprint
 
-from mysql_to_pg import run
+from mysql_to_pg import lithops_run
 
 seven_days_ago = datetime.combine(
         datetime.today() - timedelta(7), datetime.min.time())
@@ -24,9 +24,9 @@ dag = DAG(
 
 
 run_this = PythonOperator(
-    task_id='mysql_to_pg',
-    python_callable=run,
-    op_args=['World'],
+    task_id='copy_db_dag',
+    python_callable=lithops_run,
+    op_args=[100],
     dag=dag)
 
 run_this
