@@ -63,6 +63,7 @@ def lithops_run(*myparam):
             "api_key": cos_api_key
         }
     }
+    print(config)
     fexec = lithops.FunctionExecutor(config=config)
     fexec.call_async(copy,myparam)
     result = fexec.get_result()
