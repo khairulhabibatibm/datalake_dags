@@ -35,7 +35,7 @@ def working(param):
     pgconn.commit()
     return "Hello mysql pandas pgsql full"
 
-def run_lithops(*args):
+def run_staging_user(*args):
     # print("hello")
     # config = Variable.get("lithops_config", deserialize_json=True)
     fexec = lithops.FunctionExecutor(config=args[0])
