@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import time
 from pprint import pprint
 
-from mysql_to_pg import lithops_run
+from lithops_copy import lithops_run
 
 seven_days_ago = datetime.combine(
         datetime.today() - timedelta(7), datetime.min.time())
