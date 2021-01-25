@@ -65,6 +65,5 @@ def lithops_run(*myparam):
     # }
     print(config)
     fexec = lithops.FunctionExecutor(config=config)
-    fexec.call_async(copy,myparam)
-    result = fexec.get_result()
-    print(result)
+    fut = fexec.call_async(copy,myparam)
+    print(fut.result())
