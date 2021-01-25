@@ -1,0 +1,25 @@
+apiVersion: v1
+clusters:
+- cluster:
+    server: https://proxy.us-south.codeengine.cloud.ibm.com
+  name: https://proxy.us-south.codeengine.cloud.ibm.com
+contexts:
+- context:
+    cluster: https://proxy.us-south.codeengine.cloud.ibm.com
+    namespace: 50iwosz2v7l
+    user: 50iwosz2v7l
+  name: 50iwosz2v7l
+current-context: 50iwosz2v7l
+kind: Config
+preferences: {}
+users:
+- name: 50iwosz2v7l
+  user:
+    auth-provider:
+      config:
+        client-id: ce
+        client-secret: ce
+        id-token: eyJraWQiOiIyMDIxMDEyMDE4MzUiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDVBMUdBIiwiaXNzIjoiaHR0cHM6Ly9pYW0uY2xvdWQuaWJtLmNvbS9pZGVudGl0eSIsInN1YiI6IktoYWlydWwuSGFiaWJAaWJtLmNvbSIsImF1ZCI6ImNlIiwiZ2l2ZW5fbmFtZSI6Ik11aGFtbWFkIEtoYWlydWwiLCJmYW1pbHlfbmFtZSI6IkhhYmliIE11dHRhcWllbiIsIm5hbWUiOiJNdWhhbW1hZCBLaGFpcnVsIEhhYmliIE11dHRhcWllbiIsImVtYWlsIjoiS2hhaXJ1bC5IYWJpYkBpYm0uY29tIiwiZXhwIjoxNjExNTY1OTEzLCJzY29wZSI6ImlibSBvcGVuaWQiLCJpYXQiOjE2MTE1NjIzMTN9.JOD_5c8vBcb_HSfGGEt2uhZVDAYWWv667Q4t14NVMjrPrRW-XzJeGrpHTrRgL2W9Gpwwm-OQ1g84qfOaZ1F3lD_EfMq9YFevyVwlJDXag-WdNh0AoG9TR3mvK0MOy_Tz8T_PL6PGPr2zz2EFK0VSp6rZOz4mYYmlfeD-GYPxu07YYLF4BhA5sEtznZ-cU30hML177woY0Sxl4LC2vQuHX5r-WKWz0h4_bz54m67hqcabTLHQp3esRzTVv0JY4MtYNRUrNetReg6sBC6U3W2uRvNpHhorDiZy1Irf9iBkPEr1qJW82eXY_1yCz0NBNXchh5X4R2jfV2Nsy1rKupaqYg
+        idp-issuer-url: https://iam.cloud.ibm.com/identity
+        refresh-token: OKA41YaONGpDE99N-7Qeqm9TXHffphcrJwEcRIjJyY-MYBulQgNj5pWxOa_rLRtfbYPo8ZlgV-AT51MdernY3XZ_23ODvqd5abM1KW6mTH7btXD8eCva8iM0aoBdA33getyjh9fHGgZ3s-y1ZcrCdzJUPeuAVAG8YVG_ghifxj1p_PAd6uRBN24YT_QQp6PtE0GdXIbO_N5ct5i0VcawyETms1TAfqGqRaolw2Xnq2HOkMl5NlywRfA7LyIJhKmkWq1JoXtC1lKNGuJrcO-7FXitRc2HnrqnZxE5dMa_84XNKsLOf4Y-uUcOf0tJIrXn-C2pXJ9a9tI7iZl5rWt-lrP6HbmFfare6AlFlS74gccrxOAcVmygFE-17VrFj0rYjiorytB9GAO2dz5jAmVOKufmMVWpGsFgnzT66A0P3SIXkhEvShXIBWQWUEgw_EWmqHdcHjx-0QCUHKPTZG8YzBQZlsuLcOUtoMEMrEkPGzbys83wirM-4UUpgXaI91UQEQYRQ8MeCFJwYxdi5dBKBKv6dBaqV6l0XaJ4mpLqNvn3cZkFJEzREa7OuQp3mU_s-INnF0l0Dxa-EaqdPPd3606FFhLMeBXU9sBw_d6_adU_P0YoAOvNoLVvTNb-WSNOFKzyXHKahGEUo7_dCV-Phq46J5Ij_R0YizW9eXsp_wvSwaMude4TWwvV_ocdXhTZx1R5vOPo1AvgsM3HGJGDmksvduacCrjZbPMLFhDxV1CPVIswfUvI-m5NiJok95viLvIqo9-sTw_WV8UhGt2AgjP31VsNN-iZm531eWyGH2f0U1BlXlZxqhDzNYe2-IflxCWtdwFRF-4svidHlrpG0I4yoiBpBoi5gLO3_VpYj5nDAMjrmnhUYQBtp0D-OUAnhdF9wpiZ_nJ2xP0kH_c0t2mEpm5RfLO9-D6RRBvqdp26kPzto9BuECWgZXDe4kvRvXkRgoMrXxNiREiU80g8DZm5Gz1fYrex5hDWoglJm0h-w4HIbapZmI6Bjqr33ftMFnFEgnvTSlgBXSzDXwMbXh9B96Yc7OqDKjeaArc-PvkDZ8CZm5C8oVBK4pdGgVOZIc6dc8k3YslMpjxKcwVrf5hOJkAyhWFevjwAHC6Ad4l8Hzb4FXG8xeYAMHKS3yIyZbg
+      name: oidc
