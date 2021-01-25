@@ -16,7 +16,7 @@ def working(param):
 
     pgserver = '49ec7436-5643-423b-b0e4-158df3ec8b98.bqfh4fpt0vhjh7rs4ot0.databases.appdomain.cloud'
     pguser = 'ibm_cloud_cb7d01ec_dcac_47ec_8d74_52635347bb1c'
-    pgpassword = '615b50b8183aadb25407cdc48e2e05e7a36300815649ae3c0e96fddc90ff00cf'
+    pgpassword = param
     pgport = '31369'
     pgdb = 'ibmclouddb'
 
@@ -24,7 +24,16 @@ def working(param):
     pgcursor = pgconn.cursor()
     print(pgconn.get_dsn_parameters(),"\n")
 
-    return "Hello mysql pandas pgsql "
+
+    query_insert = """ INSERT INTO public.t_user(username,job,dob,country) values (%s,%s,%s,%s) """
+    
+    for index,row in df.iterrows():
+        record = (row['username'].decode('utf-8'),row['occupation'].decode('utf-8'),row['dob'].decode('utf-8'),row['country'].decode('utf-8'))
+        pgcursor.execute(query_insert,record)
+        
+    
+    pgconn.commit()
+    return "Hello mysql pandas pgsql full"
 
 def run_lithops(*args):
     # print("hello")
