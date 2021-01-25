@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 import time
 from pprint import pprint
 from lithops_copy import lithops_run
+from lithops_test import run_lithops
 
 seven_days_ago = datetime.combine(
         datetime.today() - timedelta(7), datetime.min.time())
@@ -28,7 +29,7 @@ staging_pass = Variable.get("PG_STAGING_PASSWORD")
 
 run_this = PythonOperator(
     task_id='copy_db_dag',
-    python_callable=lithops_run,
+    python_callable=run_lithops,
     op_args=[config,staging_pass],
     dag=dag)
 
