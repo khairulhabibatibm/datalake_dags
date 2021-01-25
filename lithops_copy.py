@@ -38,5 +38,5 @@ def lithops_run(*op_args):
     config = op_args[0]
     print(config)
     fexec = lithops.FunctionExecutor(config=config)
-    result = fexec.map(copy,[op_args[1]])
+    result = fexec.call_async(copy,[op_args[1]])
     print(fexec.get_result())
