@@ -7,6 +7,7 @@ def working(param):
     db.query("""SELECT * FROM user""")
     r = db.store_result()
     user_result = r.fetch_row(maxrows=0,how=1)
+    print("success load data from mysql")
     return "Hello staging " + param
 
 def run_lithops(*args):
