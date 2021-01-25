@@ -1,5 +1,6 @@
 import lithops
 from MySQLdb import _mysql
+import pandas as pd
 
 def working(param):
     print(param)
@@ -8,6 +9,11 @@ def working(param):
     r = db.store_result()
     user_result = r.fetch_row(maxrows=0,how=1)
     print("success load data from mysql")
+
+    df = pd.DataFrame(user_result)
+    print(df.head())
+
+
     return "Hello staging " + param
 
 def run_lithops(*args):
