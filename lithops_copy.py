@@ -1,18 +1,20 @@
 import lithops
-from MySQLdb import _mysql
+# from MySQLdb import _mysql
 import psycopg2
-import pandas as pd
+# import pandas as pd
 
 def copy(staging_pass):
-    db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
-    db.query("""SELECT * FROM user""")
-    r = db.store_result()
-    user_result = r.fetch_row(maxrows=0,how=1)
-    df = pd.DataFrame(user_result)
-    print(df.head())
+    # db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
+    # db.query("""SELECT * FROM user""")
+    # r = db.store_result()
+    # user_result = r.fetch_row(maxrows=0,how=1)
+    # df = pd.DataFrame(user_result)
+    # print(df.head())
 
-    for index,row in df.iterrows():
-        print(row['username'].decode('utf-8'), row['dob'].decode('utf-8'))
+    # for index,row in df.iterrows():
+    #     print(row['username'].decode('utf-8'), row['dob'].decode('utf-8'))
+
+    print("without mysql and pandas")
 
     pgserver = '49ec7436-5643-423b-b0e4-158df3ec8b98.bqfh4fpt0vhjh7rs4ot0.databases.appdomain.cloud'
     pguser = 'ibm_cloud_cb7d01ec_dcac_47ec_8d74_52635347bb1c'
@@ -26,11 +28,11 @@ def copy(staging_pass):
 
     query_insert = """ INSERT INTO public.t_user(username,job,dob,country) values (%s,%s,%s,%s) """
     
-    for index,row in df.iterrows():
-        record = (row['username'].decode('utf-8'),row['occupation'].decode('utf-8'),row['dob'].decode('utf-8'),row['country'].decode('utf-8'))
-        pgcursor.execute(query_insert,record)
+    # for index,row in df.iterrows():
+    #     record = (row['username'].decode('utf-8'),row['occupation'].decode('utf-8'),row['dob'].decode('utf-8'),row['country'].decode('utf-8'))
+    #     pgcursor.execute(query_insert,record)
     
-    pgconn.commit()
+    # pgconn.commit()
 
     return "Success"
 
