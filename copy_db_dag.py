@@ -6,8 +6,7 @@ from datetime import datetime, timedelta
 
 import time
 from pprint import pprint
-from lithops_copy import lithops_run
-from lithops_test import run_lithops
+from lithops_staging import run_lithops
 
 seven_days_ago = datetime.combine(
         datetime.today() - timedelta(7), datetime.min.time())
