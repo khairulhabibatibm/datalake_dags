@@ -8,6 +8,7 @@ import time
 from pprint import pprint
 from staging_user import run_staging_user
 from staging_trx import run_staging_trx
+from staging_payment import run_staging_payment
 
 seven_days_ago = datetime.combine(
         datetime.today() - timedelta(7), datetime.min.time())
@@ -39,4 +40,11 @@ staging_trx_step = PythonOperator(
     op_args=[config,staging_pass],
     dag=dag)
 
+staging_pamyent_step = PythonOperator(
+    task_id='copy_payment_to_staging',
+    python_callable=run_staging_payment,
+    op_args=[config,staging_pass],
+    dag=dag)
+
 staging_user_step >> staging_trx_step
+staging_user_step >> staging_pamyent_step
