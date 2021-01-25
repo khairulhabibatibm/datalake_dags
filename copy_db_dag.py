@@ -22,11 +22,12 @@ dag = DAG(
     schedule_interval=None)
 
 config = Variable.get("lithops_config", deserialize_json=True)
+staging_pass = Variable.get("PG_STAGING_PASSWORD")
 
 run_this = PythonOperator(
     task_id='copy_db_dag',
     python_callable=lithops_run,
-    op_args=[config],
+    op_args=[config,staging_pass],
     dag=dag)
 
 run_this
