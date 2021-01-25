@@ -1,13 +1,8 @@
 from __future__ import print_function
-from builtins import range
 from airflow.operators.python_operator import PythonOperator
 from airflow.models import DAG, Variable
 from datetime import datetime, timedelta
 
-import lithops
-from MySQLdb import _mysql
-import psycopg2
-import pandas as pd
 
 import time
 from pprint import pprint
