@@ -8,5 +8,5 @@ def working(param):
 def run_lithops(*args):
     config = Variable.get("lithops_config", deserialize_json=True)
     fexec = lithops.FunctionExecutor(config=config)
-    fut = fexec.call_async(working,"World")
-    print(fut.result())
+    fexec.call_async(working,"World")
+    print(fexec.get_result())
