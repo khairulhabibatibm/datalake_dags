@@ -34,7 +34,7 @@ def copy(slicenum):
 
     return "Success"
 
-def lithops_run(config):
+def lithops_run(*op_args):
 
     # iam_api_key = Variable.get("IAM_APIKEY")
     # cos_api_key = Variable.get("COS_APIKEY")
@@ -62,6 +62,7 @@ def lithops_run(config):
     #         "api_key": cos_api_key
     #     }
     # }
+    config = op_args[0]
     print(config)
     fexec = lithops.FunctionExecutor(config=config)
     fut = fexec.call_async(copy,"hello")

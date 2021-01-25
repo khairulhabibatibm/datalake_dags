@@ -26,7 +26,7 @@ config = Variable.get("lithops_config", deserialize_json=True)
 run_this = PythonOperator(
     task_id='copy_db_dag',
     python_callable=lithops_run,
-    op_args=config,
+    op_args=[config],
     dag=dag)
 
 run_this
