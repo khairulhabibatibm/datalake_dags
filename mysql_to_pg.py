@@ -2,7 +2,6 @@ import lithops
 from MySQLdb import _mysql
 import psycopg2
 import pandas as pd
-from airflow.models import Variable
 
 def copy(slicenum):
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
@@ -35,8 +34,8 @@ def copy(slicenum):
 
     return "Success"
 
-def lithops_run(*myparam):
-    config = Variable.get("lithops_config", deserialize_json=True)
+def lithops_run(config):
+
     # iam_api_key = Variable.get("IAM_APIKEY")
     # cos_api_key = Variable.get("COS_APIKEY")
     # config = {
@@ -65,5 +64,5 @@ def lithops_run(*myparam):
     # }
     print(config)
     fexec = lithops.FunctionExecutor(config=config)
-    fut = fexec.call_async(copy,myparam)
+    fut = fexec.call_async(copy,"hello")
     print(fut.result())

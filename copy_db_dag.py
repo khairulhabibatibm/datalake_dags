@@ -1,7 +1,7 @@
 from __future__ import print_function
 from builtins import range
 from airflow.operators.python_operator import PythonOperator
-from airflow.models import DAG
+from airflow.models import DAG, Variable
 from datetime import datetime, timedelta
 
 import time
@@ -21,12 +21,12 @@ dag = DAG(
     dag_id='copy_db_dag', default_args=args,
     schedule_interval=None)
 
-
+config = Variable.get("lithops_config", deserialize_json=True)
 
 run_this = PythonOperator(
     task_id='copy_db_dag',
     python_callable=lithops_run,
-    op_args=[100],
+    op_args=config,
     dag=dag)
 
 run_this
