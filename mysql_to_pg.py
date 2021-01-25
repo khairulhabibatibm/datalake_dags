@@ -47,7 +47,7 @@ def run(myparam):
         },
         "serverless": {
             "backend": "ibm_cf",
-            "runtime": "khairulhabib/lithops-runtime-datalake:1.0.1"
+            "runtime": "khairulhabib/lithops-runtime-datalake:1.0.4"
         },
         "ibm": {
             "iam_api_key": iam_api_key
