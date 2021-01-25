@@ -65,3 +65,5 @@ def run(args):
     # }
     fexec = lithops.FunctionExecutor(config=config)
     fexec.call_async(copy,100)
+    fexec.get_result()
+    fexec.clean()
