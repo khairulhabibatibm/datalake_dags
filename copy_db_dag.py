@@ -46,5 +46,4 @@ staging_pamyent_step = PythonOperator(
     op_args=[config,staging_pass],
     dag=dag)
 
-staging_user_step >> staging_trx_step
-staging_user_step >> staging_pamyent_step
+staging_user_step >> staging_trx_step >> staging_pamyent_step

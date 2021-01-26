@@ -51,16 +51,5 @@ def run_staging_payment(*args):
             [6,pgpassword],
             [7,pgpassword],
             [8,pgpassword],
-            [9,pgpassword],
-            [10,pgpassword],
-            [11,pgpassword],
-            [12,pgpassword],
-            [13,pgpassword],
-            [14,pgpassword],
-            [15,pgpassword],
-            [16,pgpassword],
-            [17,pgpassword],
-            [18,pgpassword],
-            [19,pgpassword],
             [20,pgpassword]])
     print(fexec.get_result())
