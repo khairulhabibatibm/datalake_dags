@@ -25,14 +25,15 @@ def working(param):
     print(pgconn.get_dsn_parameters(),"\n")
 
 
-    query_insert = """ INSERT INTO public.t_trx(trx_id,username,item_id,qty,amount) values (%s,%s,%s,%s,%s) """
+    query_insert = """ INSERT INTO public.t_trx(trx_id,username,item_id,qty,amount,trx_type) values (%s,%s,%s,%s,%s,%s) """
     
     for index,row in df.iterrows():
         record = (row['trx_id'].decode('utf-8'),
                 row['username'].decode('utf-8'),
                 row['item_id'].decode('utf-8'),
                 row['qty'].decode('utf-8'),
-                row['amount'].decode('utf-8'))
+                row['amount'].decode('utf-8'),
+                row['trx_type'].decode('utf-8'))
         pgcursor.execute(query_insert,record)
         
     
