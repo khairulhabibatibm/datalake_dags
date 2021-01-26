@@ -3,10 +3,10 @@ from MySQLdb import _mysql
 import pandas as pd
 import psycopg2
 
-def working(param):
+def working(param,pgpasswd):
     print(param)
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
-    db.query("""SELECT * FROM payment""")
+    db.query("SELECT * FROM payment where payment_type = {0}".format(param))
     r = db.store_result()
     trx_result = r.fetch_row(maxrows=10,how=1)
     print("success load data from mysql")
@@ -16,7 +16,7 @@ def working(param):
 
     pgserver = '49ec7436-5643-423b-b0e4-158df3ec8b98.bqfh4fpt0vhjh7rs4ot0.databases.appdomain.cloud'
     pguser = 'ibm_cloud_cb7d01ec_dcac_47ec_8d74_52635347bb1c'
-    pgpassword = param
+    pgpassword = pgpasswd
     pgport = '31369'
     pgdb = 'ibmclouddb'
 
@@ -40,5 +40,27 @@ def working(param):
 
 def run_staging_payment(*args):
     fexec = lithops.FunctionExecutor(config=args[0])
-    fexec.call_async(working,args[1])
+    # fexec.call_async(working,args[1])
+    pgpassword = args[1]
+    fexec.map(working,
+            [[1,pgpassword],
+            [2,pgpassword],
+            [3,pgpassword],
+            [4,pgpassword],
+            [5,pgpassword],
+            [6,pgpassword],
+            [7,pgpassword],
+            [8,pgpassword],
+            [9,pgpassword],
+            [10,pgpassword],
+            [11,pgpassword],
+            [12,pgpassword],
+            [13,pgpassword],
+            [14,pgpassword],
+            [15,pgpassword],
+            [16,pgpassword],
+            [17,pgpassword],
+            [18,pgpassword],
+            [19,pgpassword],
+            [20,pgpassword]])
     print(fexec.get_result())
