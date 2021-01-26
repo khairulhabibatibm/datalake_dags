@@ -3,12 +3,14 @@ from MySQLdb import _mysql
 import pandas as pd
 import psycopg2
 
+pgpassword = ""
+
 def working(param):
     print(param)
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
-    db.query("""SELECT * FROM trx""")
+    db.query("""SELECT * FROM trx where trx_id = %s""",(param))
     r = db.store_result()
-    trx_result = r.fetch_row(maxrows=100000,how=1)
+    trx_result = r.fetch_row(maxrows=10,how=1)
     print("success load data from mysql")
 
     df = pd.DataFrame(trx_result)
@@ -16,7 +18,6 @@ def working(param):
 
     pgserver = '49ec7436-5643-423b-b0e4-158df3ec8b98.bqfh4fpt0vhjh7rs4ot0.databases.appdomain.cloud'
     pguser = 'ibm_cloud_cb7d01ec_dcac_47ec_8d74_52635347bb1c'
-    pgpassword = param
     pgport = '31369'
     pgdb = 'ibmclouddb'
 
@@ -44,5 +45,7 @@ def run_staging_trx(*args):
     # print("hello")
     # config = Variable.get("lithops_config", deserialize_json=True)
     fexec = lithops.FunctionExecutor(config=args[0])
-    fexec.call_async(working,args[1])
+    pgpassword = args[1]
+    # fexec.call_async(working,args[1])
+    fexec.map(working,[10,11,12,13,14,15,16,17,18,19,20])
     print(fexec.get_result())
