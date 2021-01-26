@@ -2,8 +2,9 @@ import lithops
 from MySQLdb import _mysql
 import pandas as pd
 import psycopg2
+from airflow.models import Variable
 
-pgpassword = ""
+
 
 def working(param):
     print(param)
@@ -20,6 +21,7 @@ def working(param):
     pguser = 'ibm_cloud_cb7d01ec_dcac_47ec_8d74_52635347bb1c'
     pgport = '31369'
     pgdb = 'ibmclouddb'
+    pgpassword = Variable.get("PG_STAGING_PASSWORD")
 
     pgconn = psycopg2.connect(user=pguser,password=pgpassword,host=pgserver,database=pgdb,port=pgport)
     pgcursor = pgconn.cursor()
