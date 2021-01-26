@@ -8,7 +8,7 @@ import psycopg2
 def working(param,passwd):
     print(param)
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
-    db.query("SELECT * FROM trx where trx_id = {0}".format(param))
+    db.query("SELECT * FROM trx where trx_type = {0}".format(param))
     r = db.store_result()
     trx_result = r.fetch_row(maxrows=0,how=1)
     print("success load data from mysql")
@@ -49,5 +49,16 @@ def run_staging_trx(*args):
     pgpassword = args[1]
     # fexec.call_async(working,args[1])
     # fexec.map(working,[[10,11,12,13,14,15,16,17,18,19,20])
-    fexec.map(working,[[10,pgpassword],[11,pgpassword],[12,pgpassword],[13,pgpassword],[14,pgpassword],[15,pgpassword],[16,pgpassword],[17,pgpassword],[18,pgpassword],[19,pgpassword],[20,pgpassword]])
+    fexec.map(working,
+        [[10,pgpassword],
+        [11,pgpassword],
+        [12,pgpassword],
+        [13,pgpassword],
+        [14,pgpassword],
+        [15,pgpassword],
+        [16,pgpassword],
+        [17,pgpassword],
+        [18,pgpassword],
+        [19,pgpassword],
+        [20,pgpassword]])
     print(fexec.get_result())
