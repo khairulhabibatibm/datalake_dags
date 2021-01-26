@@ -8,7 +8,7 @@ pgpassword = ""
 def working(param):
     print(param)
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
-    db.query("""SELECT * FROM trx where trx_id = %s""",(param))
+    db.query("SELECT * FROM trx where trx_id = "+param+"")
     r = db.store_result()
     trx_result = r.fetch_row(maxrows=10,how=1)
     print("success load data from mysql")
