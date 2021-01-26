@@ -2,11 +2,10 @@ import lithops
 from MySQLdb import _mysql
 import pandas as pd
 import psycopg2
-from airflow.models import Variable
 
 
 
-def working(param):
+def working(param,passwd):
     print(param)
     db=_mysql.connect(host="cap-au-sg-prd-05.securegateway.appdomain.cloud",port=15208,user="habib",passwd="password123",db="testdev")
     db.query("SELECT * FROM trx where trx_id = {0}".format(param))
@@ -21,7 +20,7 @@ def working(param):
     pguser = 'ibm_cloud_cb7d01ec_dcac_47ec_8d74_52635347bb1c'
     pgport = '31369'
     pgdb = 'ibmclouddb'
-    pgpassword = Variable.get("PG_STAGING_PASSWORD")
+    pgpassword = passwd
 
     pgconn = psycopg2.connect(user=pguser,password=pgpassword,host=pgserver,database=pgdb,port=pgport)
     pgcursor = pgconn.cursor()
@@ -49,5 +48,6 @@ def run_staging_trx(*args):
     fexec = lithops.FunctionExecutor(config=args[0])
     pgpassword = args[1]
     # fexec.call_async(working,args[1])
-    fexec.map(working,[10,11,12,13,14,15,16,17,18,19,20])
+    # fexec.map(working,[[10,11,12,13,14,15,16,17,18,19,20])
+    fexec.map(working,[[10,pgpassword],[11,pgpassword],[12,pgpassword],[13,pgpassword],[14,pgpassword],[15,pgpassword],[16,pgpassword],[17,pgpassword],[18,pgpassword],[19,pgpassword],[20,pgpassword]])
     print(fexec.get_result())
