@@ -19,7 +19,7 @@ args = {
 
 dag = DAG(
     dag_id='basic_dag', default_args=args,
-    schedule_interval=None)
+    schedule_interval='*/10 * * * *')
 
 config = Variable.get("lithops_config", deserialize_json=True)
 
